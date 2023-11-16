@@ -1,0 +1,83 @@
+{{define "admin/login/index.tmpl"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<script src="/static/style/js/jquery.js"></script>
+	<link rel="stylesheet" href="/static/style/css/ch-ui.admin.css">
+	<link rel="stylesheet" href="/static/style/font/css/font-awesome.min.css">
+  <script type="text/javascript" src="/static/style/js/jquery.js"></script>
+  <script type="text/javascript" src="/static/layer/layer.js"></script>
+</head>
+<body style="background:#F3F3F4;">
+	<div class="login_box">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+		<h2>欢迎使用商品管理平台</h2>
+    <form action="/api/v1/admin/login/oldLogin" method="post">
+      <div class="form">
+        <ul>
+          <li>
+            <input type="text" name="username" class="text" value=""/>
+            <span><i class="fa fa-user"></i></span>
+          </li>
+          <li>
+            <input type="password" name="password" class="text" value=""/>
+            <span><i class="fa fa-lock"></i></span>
+          </li>
+
+           <li>
+						<input type="text" class="code" name="code" value=""/>
+						<span><i class="fa fa-check-square-o"></i></span>
+						<img id="code" src="" alt="" onclick="get_captcha()">
+					</li>
+
+          <li>
+            <input type="hidden" name="uuid"  value="" id="uuid"/>
+            <span><i class="fa fa-lock"></i></span>
+          </li>
+
+<!--          <li>-->
+<!--            <input type="checkbox" name="online">保持登录状态-->
+<!--          </li>-->
+          <li>
+            <input type="submit" value="立即登陆"/>
+          </li>
+        </ul>
+        <!-- <p><a href="#">返回首页</a> &copy; 2016 Powered by </p> -->
+      </div>
+    </form>
+
+	</div>
+
+</body>
+
+<script>
+  window.onload = get_captcha
+  function get_captcha() {
+    $.ajax({
+      url: "/api/v1/captcha",
+      type: 'get',
+      //data: JSON.stringify(data),
+      // dataType: 'json',
+      contentType: "application/json;charset=utf-8;",
+      success: function (msg) {
+        document.getElementById('code').setAttribute("src",msg.data)
+        document.getElementById('uuid').setAttribute("value",msg.id)
+      },
+
+      error: function (msg) {
+        // console.log(msg.responseJSON)
+        layer.msg("", {icon: 6, time: 2000});
+      }
+    });
+  }
+</script>
+
+</html>
+{{end}}

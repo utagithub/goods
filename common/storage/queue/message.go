@@ -1,0 +1,67 @@
+/*
+ * @Author: 尤_Ta
+ * @Date:  12:46
+ * @Last Modified by: 尤_Ta
+ * @Last Modified time:  12:46
+ */
+
+package queue
+
+import (
+  "github.com/robinjoseph08/redisqueue/v2"
+  //"goods/common/config/redisqueue"
+  "goods/common/storage"
+)
+
+type Message struct {
+  redisqueue.Message
+  ErrorCount int
+}
+
+func (m *Message) GetID() string {
+  return m.ID
+}
+
+func (m *Message) GetStream() string {
+  return m.Stream
+}
+
+func (m *Message) GetValues() map[string]interface{} {
+  return m.Values
+}
+
+func (m *Message) SetID(id string) {
+  m.ID = id
+}
+
+func (m *Message) SetStream(stream string) {
+  m.Stream = stream
+}
+
+func (m *Message) SetValues(values map[string]interface{}) {
+  m.Values = values
+}
+
+func (m *Message) GetPrefix() (prefix string) {
+  if m.Values == nil {
+    return
+  }
+  v, _ := m.Values[storage.PrefixKey]
+  prefix, _ = v.(string)
+  return
+}
+
+func (m *Message) SetPrefix(prefix string) {
+  if m.Values == nil {
+    m.Values = make(map[string]interface{})
+  }
+  m.Values[storage.PrefixKey] = prefix
+}
+
+func (m *Message) SetErrorCount(count int) {
+  m.ErrorCount = count
+}
+
+func (m *Message) GetErrorCount() int {
+  return m.ErrorCount
+}
