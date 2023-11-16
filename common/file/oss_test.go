@@ -1,14 +1,15 @@
 package file
 
 import (
+	"goods/config"
 	"testing"
 )
 
 var (
-	endpoint        string = "https://oss-cn-beijing.aliyuncs.com"
-	accessKeyID     string = "LTAIMsginO6370pg"
-	accessKeySecret string = "iC9KykZSpc2xSJOnZ3NLcr4NikVZvl"
-	bucketName      string = "u-ta"
+	endpoint        string = config.ExtConfig.UpLoad.Secret.Endpoint
+	accessKeyID     string = config.ExtConfig.UpLoad.Secret.AccessKeyID
+	accessKeySecret string = config.ExtConfig.UpLoad.Secret.AccessKeySecret
+	bucketName      string = config.ExtConfig.UpLoad.Secret.BucketName
 	imgPath         string = "image/"
 	videogPath      string = "video/"
 )
