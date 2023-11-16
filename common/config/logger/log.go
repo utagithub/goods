@@ -1,13 +1,13 @@
 package logger
 
 import (
-  "goods/common/debug/writer"
-  "goods/common/logger"
-  log "goods/common/logger"
-  "goods/common/logger/zap"
-  "goods/common/tools"
-  "io"
-  "os"
+	"goods/common/debug/writer"
+	"goods/common/logger"
+	log "goods/common/logger"
+	"goods/common/logger/zap"
+	"goods/common/tools"
+	"io"
+	"os"
 )
 
 // SetupLogger 日志 cap 单位为kb

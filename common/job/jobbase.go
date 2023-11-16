@@ -8,14 +8,14 @@
 package job
 
 import (
-  "fmt"
-  "github.com/robfig/cron/v3"
-  "goods/common/logger"
-  "goods/common/runtime"
-  "goods/common/tools"
-  "goods/models"
-  "gorm.io/gorm"
-  "time"
+	"fmt"
+	"github.com/robfig/cron/v3"
+	"goods/common/logger"
+	"goods/common/runtime"
+	"goods/common/tools"
+	"goods/models"
+	"gorm.io/gorm"
+	"time"
 )
 
 var TimeFormat = "2006-01-02 15:04:05"

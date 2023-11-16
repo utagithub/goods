@@ -8,60 +8,60 @@
 package queue
 
 import (
-  "github.com/robinjoseph08/redisqueue/v2"
-  //"goods/common/config/redisqueue"
-  "goods/common/storage"
+	"github.com/robinjoseph08/redisqueue/v2"
+	//"goods/common/config/redisqueue"
+	"goods/common/storage"
 )
 
 type Message struct {
-  redisqueue.Message
-  ErrorCount int
+	redisqueue.Message
+	ErrorCount int
 }
 
 func (m *Message) GetID() string {
-  return m.ID
+	return m.ID
 }
 
 func (m *Message) GetStream() string {
-  return m.Stream
+	return m.Stream
 }
 
 func (m *Message) GetValues() map[string]interface{} {
-  return m.Values
+	return m.Values
 }
 
 func (m *Message) SetID(id string) {
-  m.ID = id
+	m.ID = id
 }
 
 func (m *Message) SetStream(stream string) {
-  m.Stream = stream
+	m.Stream = stream
 }
 
 func (m *Message) SetValues(values map[string]interface{}) {
-  m.Values = values
+	m.Values = values
 }
 
 func (m *Message) GetPrefix() (prefix string) {
-  if m.Values == nil {
-    return
-  }
-  v, _ := m.Values[storage.PrefixKey]
-  prefix, _ = v.(string)
-  return
+	if m.Values == nil {
+		return
+	}
+	v, _ := m.Values[storage.PrefixKey]
+	prefix, _ = v.(string)
+	return
 }
 
 func (m *Message) SetPrefix(prefix string) {
-  if m.Values == nil {
-    m.Values = make(map[string]interface{})
-  }
-  m.Values[storage.PrefixKey] = prefix
+	if m.Values == nil {
+		m.Values = make(map[string]interface{})
+	}
+	m.Values[storage.PrefixKey] = prefix
 }
 
 func (m *Message) SetErrorCount(count int) {
-  m.ErrorCount = count
+	m.ErrorCount = count
 }
 
 func (m *Message) GetErrorCount() int {
-  return m.ErrorCount
+	return m.ErrorCount
 }
